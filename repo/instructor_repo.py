@@ -8,8 +8,13 @@ import repo.member_repo as member_repo
 import repo.session_repo as session_repo
 
 def delete_all():
-    sql = "DELETE from booking"
+    sql = "DELETE from instructors"
     run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM instructors WHERE id =%s"
+    values = [id]
+    run_sql(sql, values)
 
 def save(instructor):
     sql = "INSERT INTO instructors (name, sessions_id, members_id) VALUES (%s,%s,%s) returning id"

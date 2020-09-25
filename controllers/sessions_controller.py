@@ -7,3 +7,8 @@ import repo.member_repo as member_repo
 import repo.session_repo as session_repo
 
 sessions_blueprint = Blueprint("sessions", __name__)
+
+@sessions_blueprint.route("/sessions")
+def sessions():
+    sessions = session_repo.select_all()
+    return render_template("sessions/index.html", sessions=sessions)
