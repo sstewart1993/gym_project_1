@@ -16,9 +16,55 @@ def delete(id):
     values = [id]
     run_sql(sql, values)
 
+def select(id):
+    sql ="SELECT FROM instructors WHERE id =%s"
+    values = ["id"]
+    result = run_sql(sql, values)[0]
+    instructor = Instructor(result["name"], result["member_id"], result["session_id"])
+    return instructor
+
+def select_all():
+    instructors = []
+    sql = "SELECT * FROM instructors"
+    results = run_sql(sql)
+    for result in results:
+        instructor = Instructor(result["name"], result["member_id"], result["session_id"])
+        instructors.append(instructor)
+    return instructors
+
 def save(instructor):
-    sql = "INSERT INTO instructors (name, sessions_id, members_id) VALUES (%s,%s,%s) returning id"
-    values = [instructor.name, instructor.session.id, instructor.member.id]
+    sql = "INSERT INTO instructors (name, members_id, sessions_id) VALUES (%s,%s,%s) RETURNING id"
+    values = [instructor.name, instructor.member.id, instructor.session.id]
     results = run_sql(sql, values)
     id = results[0]["id"]
     instructor.id = id
+
+def update(instructor):
+    sql = "UPDATE instructors SET name = %s WHERE id = %s"
+    values = [instructor.name, instructor.id]
+    run_sql(sql, values)
+
+# return all the instructors that share members and sessions
+# come back and work this out later
+
+# def instructors(member):
+#     instructors = []
+
+#     sql = "SELECT sessions.* FROM sessions INNER JOIN members ON members.session_id = session.id WHERE member_id = %s"
+#     values = [member.id]
+#     results = run_sql(sql, values)
+
+#     for row in results:
+#         session = Session(row["name"], row["time"], row["date"], row["duration"], row["capacity"])
+#         sessions.append(session)
+#     return sessions
+
+
+
+
+
+
+
+
+
+

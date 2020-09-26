@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1> Sessions Page</h1>
+
+{% for session in sessions %}
+<section>
+    <p>{{ session.name }} {{ session.time }} {{ session.date }} {{ session.duration }} {{ session.capacity }}</p>
+    <a href="/session/{{ session.id }}/edit"></a>
+    <form action="/sessions/{{ session.id }}/delete" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+</section>
+
+{% endfor %}
+
+
+{% endblock %}

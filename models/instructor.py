@@ -1,6 +1,6 @@
 class Instructor():
-    def __init__(self, name, session, member,  id=None):
+    def __init__(self, name, member, session, id=None):
         self.name = name
-        self.session = session
         self.member = member
+        self.session = session
         self.id = id

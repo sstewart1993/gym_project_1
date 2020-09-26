@@ -16,9 +16,40 @@ def delete(id):
     values = [id]
     run_sql(sql, values)
 
+def select(id):
+    sql = "SELECT FROM bookings WHERE id = %s"
+    values = ["id"]
+    result = run_sql(sql, values) [0]
+    booking = Booking(result["member_id"], result["session_id"])
+    return booking 
+
+def select_all():
+    bookings = []
+    sql = "SELECT * FROM bookings"
+    results = run_sql(sql)
+    for result in results: 
+        booking = Booking(result["member_id"], result["session_id"])
+        bookings.append(booking)
+    return bookings
+
+
 def save(booking):
-    sql = "INSERT INTO bookings (member_id, session_id) VALUES (%s,%s) returning id"
+    sql = "INSERT INTO bookings (members_id, sessions_id) VALUES (%s,%s) returning id"
     values = [booking.member.id, booking.session.id]
     results = run_sql(sql, values)
     id = results[0]["id"]
     booking.id = id
+
+# return all the sessions the member has booked
+
+def sessions(member):
+    sessions = []
+
+    sql = "SELECT sessions.* FROM sessions INNER JOIN members ON members.session_id = session.id WHERE member_id = %s"
+    values = [member.id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        session = Session(row["name"], row["time"], row["date"], row["duration"], row["capacity"])
+        sessions.append(session)
+    return sessions

@@ -33,14 +33,14 @@ session2 = Session("core", "12:15", "Wednesday", 30, 9)
 session_repo.save(session2)
 
 booking1 = Booking(member1, session1)
-# booking_repo.save(booking1)
+booking_repo.save(booking1)
 booking2 = Booking(member3, session2)
-# booking_repo.save(booking2)
+booking_repo.save(booking2)
 
 instructor1 = Instructor("Peter La Fleur", session1, member1)
-# instructor_repo.save(instructor1)
+instructor_repo.save(instructor1)
 instructor2 = Instructor("White Goodman", session2, member2)
-# instructor_repo.save(instructor2)
+instructor_repo.save(instructor2)
 
 # print (booking2)
 # print(member1)

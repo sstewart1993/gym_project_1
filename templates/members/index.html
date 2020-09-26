@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h1> New Members Page</h1>
+<h1> Members Page</h1>
 
-{% for member in members%}
+{% for member in members %}
 <section>
     <p>{{ member.name }} {{ member.age }} {{ member.gender}} {{ member.level }}</p>
     <a href="/member/{{ member.id }}/edit"></a>
