@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1> Instructors Page</h1>
+
+{% for instructor in instructors %}
+<section>
+    <p>{{ instructor.name }} {{ instructor.session.id }} {{ instructor.member.id}}</p>
+    <a href="/instructors/{{ instructor.id }}/edit">Edit Instructor</a>
+    <form action="/instructors/{{ instructors.id }}/delete" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+</section>
+
+{% endfor %}
+
+<a href="instructors/new">Add a new Instructor</a>
+<!-- <a href="members/edit">Edit Membership</a> -->
+
+
+{% endblock %}

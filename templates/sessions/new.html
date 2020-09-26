@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Create a New Session </h1>
+
+<form action="/sessions" methods="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <label for="time">Time</label>
+        <input type="text" id="time" name="time">
+        <label for="date">Date</label>
+        <input type="text" id="date" name="date">
+        <label for="duration">Duration</label>
+        <input type="text" id="duration" name="duration">
+        <label for="capacity">Capacity</label>
+        <input type="text" id="capacity" name="capacity">
+        <input class="btn btn--action" type='submit' value="Sessions">    </div>
+</form>
+
+
+{% endblock %}

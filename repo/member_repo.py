@@ -18,10 +18,20 @@ def delete(id):
 
 def select(id):
     sql = "SELECT FROM members WHERE id= %s"
-    values = ["id"]
-    result = run_sql(sql, values) [0]
-    member = Member(result["name"], result["age"], result["gender"], result["level"])
+    values = [id]
+    result = run_sql(sql, values)[0]
+    member = Member(result["name"], result["age"], result["gender"], result["level"], result["id"])
     return member 
+
+# def select(id):
+#     member = None
+#     sql = "SELECT * FROM members WHERE id = %s"
+#     values = [id]
+#     result = run_sql(sql, values)[0]
+
+#     if result is not None:
+#         member = Member(result["name"], result["age"], result["gender"], result["level"], result["id"])
+#     return member
 
 
 def select_all():
@@ -44,5 +54,5 @@ def save(member):
 
 def update(member):
     sql = "UPDATE members SET name = %s WHERE id = %s"
-    values = [member.name, member.id]
+    values = [member.name, member.age, member.gender, member.level, member.id]
     run_sql(sql, values)

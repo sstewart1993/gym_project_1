@@ -2,5 +2,36 @@
 {% block content %}
 <h1>Update Membership Information </h1>
 
+<form action="/members/{{ member.id }}" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ member.name }}">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" value="{{member.age}}">
+        <label for="name">Gender:</label>
+        <input type="text" id="gender" name="gender" value="{{ member.gender }}">
+        <label for="level">Level:</label>
+        <input type="text" id="level" name="level" value="{{member.level}}">  
+        <input type="submit">    
+          <!-- <div class="dropdown">
+            <button class="dropbtn">Gender</button>
+            <div class="dropdown-content">
+              <a href="Male">Male</a>
+              <a href="Female">Female</a>
+            </div>
+        </div>
+        <label for="level">Level of Membership</label>
+        <div class="dropdown">
+            <button class="dropbtn">Level</button>
+            <div class="dropdown-content">
+              <a href="Basic">Basic</a>
+              <a href="Gold">Gold</a> -->
+            <!-- </div>
+          </div> -->
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
 
 {% endblock %}

@@ -6,13 +6,16 @@
 {% for session in sessions %}
 <section>
     <p>{{ session.name }} {{ session.time }} {{ session.date }} {{ session.duration }} {{ session.capacity }}</p>
-    <a href="/session/{{ session.id }}/edit"></a>
-    <form action="/sessions/{{ session.id }}/delete" method="POST">
+    <a href="/sessions/{{ session.id }}/edit">Edit Session</a>
+    <form action="/sessions/{{ session.id }}/delete" methods="POST">
         <input type="submit" value="Delete">
     </form>
 </section>
 
 {% endfor %}
+
+<a href="sessions/new">Add a new Session</a>
+
 
 
 {% endblock %}

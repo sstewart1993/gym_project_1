@@ -6,13 +6,16 @@
 {% for member in members %}
 <section>
     <p>{{ member.name }} {{ member.age }} {{ member.gender}} {{ member.level }}</p>
-    <a href="/member/{{ member.id }}/edit"></a>
-    <form action="/members/{{ member.id }}/delete" method="POST">
+    <a href="/members/{{ member.id }}/edit">Edit Membership</a>
+    <form action="/members/{{ members.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form>
 </section>
 
 {% endfor %}
+
+<a href="members/new">Add a new Member</a>
+<!-- <a href="members/edit">Edit Membership</a> -->
 
 
 {% endblock %}

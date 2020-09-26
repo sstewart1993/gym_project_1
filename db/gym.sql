@@ -25,8 +25,8 @@ CREATE TABLE sessions (
 CREATE TABLE instructors (
     id SERIAL PRIMARY KEY,
     name VARCHAR (255),
-    sessions_id INT REFERENCES sessions(id) ON DELETE CASCADE,
-    members_id INT REFERENCES members(id) ON DELETE CASCADE
+    sessions_id INT REFERENCES sessions(id),
+    members_id INT REFERENCES members(id)
 );
 
 
