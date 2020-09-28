@@ -17,9 +17,9 @@ def delete(id):
     run_sql(sql, values)
 
 def select(id):
-    sql = "SELECT FROM bookings WHERE id = %s"
+    sql = "SELECT * FROM bookings WHERE id = %s"
     values = ["id"]
-    result = run_sql(sql, values) [0]
+    result = run_sql(sql, values)[0]
     booking = Booking(result["member_id"], result["session_id"])
     return booking 
 
@@ -40,16 +40,21 @@ def save(booking):
     id = results[0]["id"]
     booking.id = id
 
+def update(booking):
+    sql = "UPDATE bookings SET (member_id, session_id, id) = (%s,%s,%s) WHERE id = %s"
+    values = [booking.member.id, booking.seesion.id, booking.id]
+    run_sql(sql, values)
+
 # return all the sessions the member has booked
 
-def sessions(member):
-    sessions = []
+# def sessions(member):
+#     sessions = []
 
-    sql = "SELECT sessions.* FROM sessions INNER JOIN members ON members.session_id = session.id WHERE member_id = %s"
-    values = [member.id]
-    results = run_sql(sql, values)
+#     sql = "SELECT sessions.* FROM sessions INNER JOIN members ON members.session_id = session.id WHERE member_id = %s"
+#     values = [member.id]
+#     results = run_sql(sql, values)
 
-    for row in results:
-        session = Session(row["name"], row["time"], row["date"], row["duration"], row["capacity"])
-        sessions.append(session)
-    return sessions
+#     for row in results:
+#         session = Session(row["name"], row["time"], row["date"], row["duration"], row["capacity"])
+#         sessions.append(session)
+#     return sessions

@@ -17,42 +17,35 @@ def delete(id):
     run_sql(sql, values)
 
 def select(id):
-    sql = "SELECT FROM members WHERE id= %s"
+    member = None 
+    sql = "SELECT * FROM members WHERE id= %s"
     values = [id]
     result = run_sql(sql, values)[0]
-    member = Member(result["name"], result["age"], result["gender"], result["level"], result["id"])
+    if result is not None:
+        member = Member(result["name"], result["age"], result["gender"], result["level"], result["id"])
     return member 
-
-# def select(id):
-#     member = None
-#     sql = "SELECT * FROM members WHERE id = %s"
-#     values = [id]
-#     result = run_sql(sql, values)[0]
-
-#     if result is not None:
-#         member = Member(result["name"], result["age"], result["gender"], result["level"], result["id"])
-#     return member
-
 
 def select_all():
     members = []
     sql = "SELECT * FROM members"
     results = run_sql(sql)
     for result in results:
-        member = Member(result["name"], result["age"], result["gender"], result["level"])
+        member = Member(result["name"], result["age"], result["gender"], result["level"], result["id"])
         members.append(member)
     return members
 
 
 def save(member):
-    sql = "INSERT INTO members (name, age, gender, level) VALUES (%s,%s,%s,%s) returning id"
+    sql = "INSERT INTO members (name, age, gender, level) VALUES (%s,%s,%s,%s) returning *"
     values = [member.name, member.age, member.gender, member.level]
     results = run_sql(sql, values)
     id = results[0]["id"]
     member.id = id
+    return member 
 
 
 def update(member):
-    sql = "UPDATE members SET name = %s WHERE id = %s"
+    sql = "UPDATE members SET (name, age, gender, level) = (%s, %s, %s, %s) WHERE id = %s "
     values = [member.name, member.age, member.gender, member.level, member.id]
+    print (values)
     run_sql(sql, values)

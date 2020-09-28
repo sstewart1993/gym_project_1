@@ -21,15 +21,15 @@ def new_members():
 def create_member():
     name = request.form["name"]
     age = request.form["age"]
-    level = request.form["level"]
     gender = request.form["gender"]
+    level = request.form["level"]
     new_member = Member(name, age, level, gender)
     member_repo.save(new_member)
     return redirect("/members")
 
 
 # EDIT
-@members_blueprint.route("/members/<id>/edit")
+@members_blueprint.route("/members/<id>/edit", methods = ["GET"])
 def edit_member(id):
     member = member_repo.select(id)
     return render_template('members/edit.html', member=member)
@@ -40,9 +40,9 @@ def edit_member(id):
 def update_member(id):
     name = request.form["name"]
     age = request.form["age"]
-    level = request.form["level"]
     gender = request.form["gender"]
-    member = Member(name, age, level, gender, id)
+    level = request.form["level"]
+    member = Member(name, age, gender, level, id)
     member_repo.update(member)
     return redirect("/members")
 

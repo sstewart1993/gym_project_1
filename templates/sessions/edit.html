@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Update Session Information </h1>
+
+<form action="/sessions/{{ session.id }}" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ session.name }}">
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" value="{{ session.time }}">
+        <label for="date">Date:</label>
+        <input type="text" id="date" name="date" value="{{ session.date }}">
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" value="{{ session.duration }}">
+        <label for="capacity">Capacity</label>
+        <input type="text" id="capacity" name="capacity"  value="{{ session.capacity }}">
+        <input type="submit">
+    </div>
+</form>
+
+{% endblock %}

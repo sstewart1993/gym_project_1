@@ -13,11 +13,12 @@ def sessions():
     sessions = session_repo.select_all()
     return render_template("sessions/index.html", sessions=sessions)
 
+# NEW
 @sessions_blueprint.route("/sessions/new")
 def new_session():
     return render_template("/sessions/new.html")
 
-
+# CREATE
 @sessions_blueprint.route("/sessions", methods=["POST"])
 def create_session():
     name = request.form["name"]
@@ -30,15 +31,16 @@ def create_session():
     return redirect("/sessions")
 
 # EDIT
-@sessions_blueprint.route("/sessions/<id>/edit")
+@sessions_blueprint.route("/sessions/<id>/edit", methods = ["GET"])
 def edit_session(id):
     session = session_repo.select(id)
     return render_template('sessions/edit.html', session=session)
 
 
 # UPDATE
-@sessions_blueprint.route("/sessions/<id>", methods=["POST"])
+@sessions_blueprint.route("/sessions/<id>", methods = ["POST"])
 def update_session(id):
+    print (request.form)
     name = request.form["name"]
     time = request.form["time"]
     date = request.form["date"]
@@ -46,7 +48,7 @@ def update_session(id):
     capacity = request.form["capacity"]
     session = Session(name, time, date, duration, capacity, id)
     session_repo.update(session)
-    return redirect("/session")
+    return redirect("/sessions")
 
 
 # DELETE

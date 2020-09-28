@@ -1,5 +1,5 @@
 class Member():
-    def __init__(self, name, age, gender, level=None, id=None):
+    def __init__(self, name, age, gender, level, id=None):
         self.name = name
         self.age = age
         self.gender = gender
