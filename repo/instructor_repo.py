@@ -18,9 +18,10 @@ def delete(id):
 
 def select(id):
     sql ="SELECT * FROM instructors WHERE id =%s"
-    values = ["id"]
+    values = [id]
     result = run_sql(sql, values)[0]
-    instructor = Instructor(result["name"], result["member_id"], result["session_id"])
+    if result is not None:
+        instructor = Instructor(result["name"], result["member_id"], result["session_id"])
     return instructor
 
 def select_all():

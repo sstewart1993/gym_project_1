@@ -15,32 +15,40 @@ def bookings():
 
 @bookings_blueprint.route("/bookings/new")
 def new_bookings():
-    return render_template("/bookings/new.html")
+    members = member_repo.select_all()
+    sessions = session_repo.select_all()
+    return render_template("/bookings/new.html", members=members, sessions=sessions)
 
 @bookings_blueprint.route("/bookings", methods=["POST"])
 def create_booking():
-    member = member_repo.select(id)
-    session = session_repo.select(id)
+    member_id = request.form["member_id"]
+    session_id = request.form["session_id"]
+    member = member_repo.select(member_id)
+    session = session_repo.select(session_id)
     new_booking = Booking(member, session)
     booking_repo.save(new_booking)
     return redirect("/bookings")
 
 
 # EDIT
-@bookings_blueprint.route("/bookings/<id>/edit")
+@bookings_blueprint.route("/bookings/<id>/edit", methods = ["GET"])
 def edit_booking(id):
     booking = booking_repo.select(id)
-    return render_template('bookings/edit.html', booking=booking)
+    members = member_repo.select_all()
+    sessions = session_repo.select_all()
+    return render_template('bookings/edit.html', booking=booking, members=members, sessions=sessions)
 
 
-# # UPDATE
-# @bookings_blueprint.route("/bookings/<id>", methods=["POST"])
-# def update_booking(id):
-#     member = member_repo.select(id)
-#     session = session_repo.select(id)
-#     booking = Booking(member, session)
-#     booking_repo.update(booking)
-#     return redirect("/bookings")
+# UPDATE
+@bookings_blueprint.route("/bookings/<id>", methods=["POST"])
+def update_booking(id):
+    member_id = request.form("member_id")
+    session_id = request.form("session_id")
+    member = member_repo.select(member_id)
+    session = session_repo.select(session_id)
+    booking = Booking(member, session, id)
+    booking_repo.update(booking)
+    return redirect("/bookings")
 
 
 # DELETE

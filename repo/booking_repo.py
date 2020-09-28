@@ -17,10 +17,14 @@ def delete(id):
     run_sql(sql, values)
 
 def select(id):
+    booking = None
     sql = "SELECT * FROM bookings WHERE id = %s"
-    values = ["id"]
+    values = [id]
     result = run_sql(sql, values)[0]
-    booking = Booking(result["member_id"], result["session_id"])
+    if result is not None:
+        member = member_repo.select(result["member_id"])
+        session = session_repo.select(result["session_id"])
+        booking = Booking(member, session, result["id"])
     return booking 
 
 def select_all():
@@ -28,7 +32,9 @@ def select_all():
     sql = "SELECT * FROM bookings"
     results = run_sql(sql)
     for result in results: 
-        booking = Booking(result["member_id"], result["session_id"])
+        member = member_repo.select(result["members_id"])
+        session = session_repo.select(result["sessions_id"])
+        booking = Booking(member, session, result["id"])
         bookings.append(booking)
     return bookings
 
@@ -41,8 +47,8 @@ def save(booking):
     booking.id = id
 
 def update(booking):
-    sql = "UPDATE bookings SET (member_id, session_id, id) = (%s,%s,%s) WHERE id = %s"
-    values = [booking.member.id, booking.seesion.id, booking.id]
+    sql = "UPDATE bookings SET (member_id, session_id) = (%s,%s) WHERE id = %s"
+    values = [booking.member.id, booking.session.id, booking.id]
     run_sql(sql, values)
 
 # return all the sessions the member has booked
