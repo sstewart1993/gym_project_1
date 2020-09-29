@@ -22,8 +22,8 @@ def select(id):
     values = [id]
     result = run_sql(sql, values)[0]
     if result is not None:
-        member = member_repo.select(result["id"])
-        session = session_repo.select(result["id"])
+        member = member_repo.select(result["member_id"])
+        session = session_repo.select(result["session_id"])
         booking = Booking(member, session, result["id"])
     return booking 
 
