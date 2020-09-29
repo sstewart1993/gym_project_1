@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title> Average Joes </title>
+
+
 </head>
+
 <body>
+
     {% block content %}
+
 
     {% endblock %}
     
 </body>
 <footer>
     <ul>
-        <li>
-            <a href="/">Home</a>
-            <a href="/members">Members</a>
-            <a href="/sessions">Sessions</a>
-            <a href="/bookings">Bookings</a>
-            <a href="/instructors">Instructors</a>
-        </li>
+        <button><a class = button href="/">Home</a></button>
+        <button><a class = button href="/members">Members</a></button>
+        <button><a class = button href="/sessions">Sessions</a></button>
+        <button><a class = button href="/bookings">Bookings</a></button>
+        <!-- <a href="/instructors">Instructors</a> -->
     </ul>
 </footer>
 </html>

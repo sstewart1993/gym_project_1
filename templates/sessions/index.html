@@ -5,16 +5,20 @@
 
 {% for session in sessions %}
 <section>
-    <p>Name - {{ session.name }} Time - {{ session.time }} Day - {{ session.date }} Length - {{ session.duration }} Max Capacity - {{ session.capacity }}</p>
-    <a href="/sessions/{{ session.id }}/edit">Edit Session</a>
-    <a href="/sessions/{{ session.id }}/show">SHOW</a>
+    <p>Name - {{ session.name }} </p>
+    <p>Time - {{ session.time }} </p>
+    <p>Day - {{ session.date }} </p>
+    <p>Length - {{ session.duration }} </p>
+    <p>Max Capacity - {{ session.capacity }}</p>
+    <button><a href="/sessions/{{ session.id }}/edit">Edit Session</a></button> 
+    <button><a href="/sessions/{{ session.id }}/show">SHOW</a></button>
     <form action="/sessions/{{ session.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form>
 </section>
 {% endfor %}
 
-<a href="sessions/new">Add a new Session</a>
+<button><a href="sessions/new">Add a new Session</a></button>
 
 
 

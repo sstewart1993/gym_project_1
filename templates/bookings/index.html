@@ -5,8 +5,11 @@
 
 {% for booking in bookings %}
 <section>
-    <p>Member - {{ booking.member.name }} Session - {{ booking.session.name }} Date - {{booking.session.date}} Time - {{booking.session.time}}</p>
-    <a href="/bookings/{{ booking.id }}/edit">Edit Bookings</a>
+    <p>Member - {{ booking.member.name }} </p>
+    <p>Session - {{ booking.session.name }} </p>
+    <p>Date - {{booking.session.date}} </p>
+    <p>Time - {{booking.session.time}}</p>
+    <button><a href="/bookings/{{ booking.id }}/edit">Edit Bookings</a></button>    
     <form action="/bookings/{{ booking.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form>
@@ -14,8 +17,8 @@
 
 {% endfor %}
 
-<a href="bookings/new">Add a new Booking</a>
-<!-- <a href="members/edit">Edit Membership</a> -->
+<button><a href="bookings/new">Add a new Booking</a></button>    
+
 
 
 {% endblock %}

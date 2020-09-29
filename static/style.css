@@ -1,0 +1,105 @@
+body{
+    background: url("/static/images/Average_Joes.jpg");
+
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed;
+    background-position: 50% 50%;
+    background-size: initial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+body>ul>button{
+    background-color: goldenrod;
+}
+
+body>ul>button>a{
+    color: black;
+    grid-row: auto
+}
+
+body>h1{
+    color: black;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+body>section>p{
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-self: left nowrap;
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+footer{
+    align-items: baseline;
+}
+
+body>section>p{
+    font-weight: bolder;
+    font-size: 19px;
+}
+body>p{
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+    font-weight: bolder;
+}
+body>footer>ul>button>a{
+    color: black;
+}
+footer>ul>button{
+    background-color: goldenrod;
+}
+
+body>section>button{
+    background-color: goldenrod;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+}
+body>section>form>input{
+    background-color: goldenrod;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+}
+body>section>button>a{
+    color: black;
+}
+body>ul>h2{
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+body>button>a{
+    color: black;
+}
+body>button{
+    background-color: goldenrod;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 17px;
+}
+body>ul>li{
+    text-transform: uppercase;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+body>form>div>label{
+    font-size: 17px;
+}

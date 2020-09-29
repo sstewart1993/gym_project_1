@@ -5,8 +5,11 @@
 
 {% for member in members %}
 <section>
-    <p>Name - {{ member.name }} Age - {{ member.age }} Gender - {{ member.gender}} Type of Membership - {{ member.level }}</p>
-    <a href="/members/{{ member.id }}/edit">Edit Membership</a>
+    <p>Name - {{ member.name }} </p>
+    <p>Age - {{ member.age }} </p>
+    <p>Gender - {{ member.gender}} </p> 
+    <p>Type of Membership - {{ member.level }}</p>
+    <button><a href="/members/{{ member.id }}/edit">Edit Membership</a></button>
     <form action="/members/{{ member.id }}/delete" method="POST">
         <input type="submit" value="Delete">
     </form>
@@ -14,8 +17,8 @@
 
 {% endfor %}
 
-<a href="members/new">Add a new Member</a>
-<!-- <a href="members/edit">Edit Membership</a> -->
+<button><a href="members/new">Add a new Member</a></button>
+
 
 
 {% endblock %}
