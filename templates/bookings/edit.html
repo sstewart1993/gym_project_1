@@ -17,7 +17,7 @@
         <label for="session">Session:</label>
         <select name="session_id" id="session">
             {% for session in sessions %}
-            <option value="{{ sesison.id }}" {% if session.id == booking.session.id %} selected {% endif %}>
+            <option value="{{ session.id }}" {% if session.id == booking.session.id %} selected {% endif %}>
                 {{ session.name }}
             </option>
             {% endfor %}

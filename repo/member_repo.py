@@ -47,5 +47,4 @@ def save(member):
 def update(member):
     sql = "UPDATE members SET (name, age, gender, level) = (%s, %s, %s, %s) WHERE id = %s "
     values = [member.name, member.age, member.gender, member.level, member.id]
-    print (values)
     run_sql(sql, values)

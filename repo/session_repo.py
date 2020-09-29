@@ -50,3 +50,26 @@ def update(session):
     values = [session.name, session.time, session.date, session.duration, session.capacity, session.id]
     print (values)
     run_sql(sql, values)
+
+
+# SHOW ALL MEMBERS 
+
+# def sessions(member):
+#     sessions = []
+#     sql = "SELECT sessions.* FROM sessions INNER JOIN bookings ON bookings.session_id = sessions.id WHERE member_id = %s"
+#     values = [member.id]
+#     results = run_sql(sql, values)
+#     for row in results:
+#         session = Session(row["name"], row["time"], row["date"], row["duration"], row["capacity"], row["id"])
+#         sessions.append(session)
+#     return sessions
+
+def members(session):
+    members = []
+    sql = "SELECT members.* FROM members INNER JOIN bookings ON bookings.member_id = members.id WHERE session_id = %s"
+    values = [session.id]
+    results = run_sql(sql, values)
+    for row in results:
+        member = Member(row["name"], row["age"], row["gender"], row["level"], row["id"])
+        members.append(member)
+    return members

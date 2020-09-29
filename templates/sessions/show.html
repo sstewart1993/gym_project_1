@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1>Session:</h>
+<ul>
+    <p>{{ session.name}}</p>
+
+
+    {% for booking in bookings %}
+    <li>{{ booking.member_id }}</li>
+    {% endfor %}
+
+
+</ul>
+
+{% endblock %}

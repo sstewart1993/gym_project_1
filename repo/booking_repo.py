@@ -22,8 +22,8 @@ def select(id):
     values = [id]
     result = run_sql(sql, values)[0]
     if result is not None:
-        member = member_repo.select(result["member_id"])
-        session = session_repo.select(result["session_id"])
+        member = member_repo.select(result["id"])
+        session = session_repo.select(result["id"])
         booking = Booking(member, session, result["id"])
     return booking 
 
@@ -32,19 +32,20 @@ def select_all():
     sql = "SELECT * FROM bookings"
     results = run_sql(sql)
     for result in results: 
-        member = member_repo.select(result["members_id"])
-        session = session_repo.select(result["sessions_id"])
+        member = member_repo.select(result["member_id"])
+        session = session_repo.select(result["session_id"])
         booking = Booking(member, session, result["id"])
         bookings.append(booking)
     return bookings
 
 
 def save(booking):
-    sql = "INSERT INTO bookings (members_id, sessions_id) VALUES (%s,%s) returning id"
+    sql = "INSERT INTO bookings (member_id, session_id) VALUES (%s,%s) returning *"
     values = [booking.member.id, booking.session.id]
     results = run_sql(sql, values)
     id = results[0]["id"]
     booking.id = id
+    return booking
 
 def update(booking):
     sql = "UPDATE bookings SET (member_id, session_id) = (%s,%s) WHERE id = %s"
@@ -53,14 +54,5 @@ def update(booking):
 
 # return all the sessions the member has booked
 
-# def sessions(member):
-#     sessions = []
 
-#     sql = "SELECT sessions.* FROM sessions INNER JOIN members ON members.session_id = session.id WHERE member_id = %s"
-#     values = [member.id]
-#     results = run_sql(sql, values)
 
-#     for row in results:
-#         session = Session(row["name"], row["time"], row["date"], row["duration"], row["capacity"])
-#         sessions.append(session)
-#     return sessions

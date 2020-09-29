@@ -21,18 +21,17 @@ CREATE TABLE sessions (
     capacity INT
 );
 
-CREATE TABLE instructors (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR (255),
-    sessions_id INT REFERENCES sessions(id),
-    members_id INT REFERENCES members(id)
-);
-
 
 CREATE TABLE bookings (
     id SERIAL PRIMARY KEY,
-    members_id INT REFERENCES members(id),
-    sessions_id INT REFERENCES sessions(id)
+    member_id INT REFERENCES members(id),
+    session_id INT REFERENCES sessions(id)
 );
 
 
+CREATE TABLE instructors (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR (255),
+    session_id INT REFERENCES sessions(id),
+    member_id INT REFERENCES members(id)
+);

@@ -23,7 +23,7 @@ def create_member():
     age = request.form["age"]
     gender = request.form["gender"]
     level = request.form["level"]
-    new_member = Member(name, age, level, gender)
+    new_member = Member(name, age, gender, level)
     member_repo.save(new_member)
     return redirect("/members")
 
