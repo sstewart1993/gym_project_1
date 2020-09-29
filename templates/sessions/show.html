@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h1>Session:</h>
+<h2>Session:</h2>
 <ul>
     <p>{{ session.name}}</p>
 
 
-    {% for booking in bookings %}
-    <li>{{ booking.member_id }}</li>
+    {% for member in members %}
+    <li>{{ member.name }}</li>
     {% endfor %}
 
 

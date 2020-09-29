@@ -61,6 +61,5 @@ def delete_session(id):
 @sessions_blueprint.route("/sessions/<id>/show", methods = ["GET"])
 def show(id):
     session = session_repo.select(id)
-    member = member_repo.select(id)
-    sessions = session_repo.members(session)
-    return render_template("sessions/show.html", session=session, member=member, sessions=sessions)
+    members = session_repo.members(session)
+    return render_template("sessions/show.html", session=session, members=members)
