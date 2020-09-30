@@ -52,7 +52,7 @@ def update(booking):
     values = [booking.member.id, booking.session.id, booking.id]
     run_sql(sql, values)
 
-# return all the sessions the member has booked
+
 
 
 
